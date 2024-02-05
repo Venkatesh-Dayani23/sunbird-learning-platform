@@ -11,7 +11,7 @@
 - name: Add distribution release security apt repository
   become: yes
   become_user: root
-  apt_repository: repo='deb http://security.ubuntu.com/ubuntu bionic-security main' state=present
+  apt_repository: repo='deb http://security.ubuntu.com/ubuntu focal-security main' state=present
 
 - name: install azure cli dependency
   become: yes
@@ -19,7 +19,7 @@
   apt: name={{ item }} state=present update_cache=yes 
   #allow_unauthenticated: yes
   with_items:
-    - libssl-dev
+    - libssl1.0-dev
   when: ansible_distribution_release == "focal"
   
 - name: ensure azure-cli and apt-transport-https is installed
